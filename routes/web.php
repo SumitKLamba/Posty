@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashbaordController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,10 @@ Route::post('/register',[RegisterController::class,'store']);
 Route::get('/login',[LoginController::class,'index']) -> name('login');
 Route::post('/login',[LoginController::class,'store']);
 
-Route::get('/posts', function () {
-    return view('posts/index');
-});
+Route::post('/logout',[LogoutController::class,'logout']) -> name('logout');
+
+Route::get('/posts',[PostController::class,'index']) -> name('posts');
+
+Route::get('/home', function () {
+    return view('home');
+}) -> name('home');
