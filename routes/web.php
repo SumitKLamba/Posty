@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashbaordController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/home', function () {
+    return view('home');
+}) -> name('home');
 
 Route::get('/dashboard',[DashbaordController::class,'index']) -> name('dashboard');
 
@@ -31,6 +36,4 @@ Route::post('/logout',[LogoutController::class,'logout']) -> name('logout');
 Route::get('/posts',[PostController::class,'index']) -> name('posts');
 Route::post('/posts',[PostController::class,'store']);
 
-Route::get('/home', function () {
-    return view('home');
-}) -> name('home');
+Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
